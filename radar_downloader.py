@@ -16,10 +16,10 @@ RADAR_INTENSITY_LOW  = {"min": [40, 100, 100], "max": [70, 255, 255]}  #Colour i
 RADAR_INTENSITY_MID  = {"min": [16, 100, 100], "max": [39, 255, 255]}  #Colour intensity for 29.0 - 44.0 dBz
 RADAR_INTENSITY_HIGH  = {"min": [140, 100, 100], "max": [15, 255, 255]}  #Colour intensity for 9.5 - 29.0 dBz
 
-start_x = 240
-end_x = start_x+300
-start_y = 360
-end_y = start_y+200
+start_x = 360
+end_x = start_x+50
+start_y = 350
+end_y = start_y+60
 
 last_notify_time = None
 last_notify_percent = None
@@ -28,7 +28,7 @@ last_notify_percent = None
 def get_radar_image():
     response = requests.get(RADAR_IMG)
     now = datetime.now() # current date and time
-    filename = now.strftime("radar_%Y_%m_%d_%H_%M_%S")
+    # filename = now.strftime("radar_%Y_%m_%d_%H_%M_%S")
     # open(f"{IMG_PATH}{filename}.jpg", "wb").write(response.content)
     arr = np.asarray(bytearray(response.content), dtype=np.uint8)
     img = cv2.imdecode(arr, -1)
